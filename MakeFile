@@ -22,12 +22,12 @@ CC      = gcc
 CFLAGS  = -Wall -Wextra -g -pthread
 
 # Source files for each target
-SERVER_SOURCES = Server/server.c server/thread_pool.c
+SERVER_SOURCES = Server/server.c Server/thread_pool.c
 CLIENT_SOURCES = Client/client.c
 
 # Output binary paths
-SERVER_BIN = server/server
-CLIENT_BIN = client/client
+SERVER_BIN = Server/erver
+CLIENT_BIN = Client/client
 
 # Default target: build everything
 all: $(SERVER_BIN) $(CLIENT_BIN)
