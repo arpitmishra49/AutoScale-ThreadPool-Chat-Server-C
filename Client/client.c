@@ -31,7 +31,7 @@
 #include <netinet/in.h>    /* struct sockaddr_in */
 #include <arpa/inet.h>     /* inet_pton()        */
 
-#include "../common/protocol.h"
+#include "../Common/protocol.h"
 
 /* ── Shared state between the two client threads ──────────── */
 
