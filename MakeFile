@@ -1,0 +1,60 @@
+# =============================================================
+# Makefile — Chat Application (server + client)
+# =============================================================
+#
+# Usage:
+#   make           — build both server and client
+#   make server    — build only the server binary
+#   make client    — build only the client binary
+#   make clean     — remove all built binaries
+#   make run-server — build and run the server
+#   make run-client — build and run a client
+#
+# The server binary ends up in  server/server
+# The client binary ends up in  client/client
+# =============================================================
+
+CC      = gcc
+# -Wall  : enable all common warnings
+# -Wextra: enable extra warnings beyond -Wall
+# -g     : include debug symbols (remove for release builds)
+# -pthread: link the POSIX thread library (needed for pthreads)
+CFLAGS  = -Wall -Wextra -g -pthread
+
+# Source files for each target
+SERVER_SOURCES = server/server.c server/thread_pool.c
+CLIENT_SOURCES = client/client.c
+
+# Output binary paths
+SERVER_BIN = server/server
+CLIENT_BIN = client/client
+
+# Default target: build everything
+all: $(SERVER_BIN) $(CLIENT_BIN)
+
+# Link the server binary from its object files
+$(SERVER_BIN): $(SERVER_SOURCES) common/protocol.h server/thread_pool.h
+	$(CC) $(CFLAGS) $(SERVER_SOURCES) -o $(SERVER_BIN)
+	@echo "✓ Server built: $(SERVER_BIN)"
+
+# Link the client binary from its object files
+$(CLIENT_BIN): $(CLIENT_SOURCES) common/protocol.h
+	$(CC) $(CFLAGS) $(CLIENT_SOURCES) -o $(CLIENT_BIN)
+	@echo "✓ Client built: $(CLIENT_BIN)"
+
+# Convenience targets
+server: $(SERVER_BIN)
+
+client: $(CLIENT_BIN)
+
+run-server: $(SERVER_BIN)
+	./$(SERVER_BIN)
+
+run-client: $(CLIENT_BIN)
+	./$(CLIENT_BIN)
+
+clean:
+	rm -f $(SERVER_BIN) $(CLIENT_BIN)
+	@echo "✓ Cleaned build artifacts"
+
+.PHONY: all server client run-server run-client clean
