@@ -33,12 +33,12 @@ CLIENT_BIN = Client/client
 all: $(SERVER_BIN) $(CLIENT_BIN)
 
 # Link the server binary from its object files
-$(SERVER_BIN): $(SERVER_SOURCES) common/protocol.h server/thread_pool.h
+$(SERVER_BIN): $(SERVER_SOURCES) Common/protocol.h Server/thread_pool.h
 	$(CC) $(CFLAGS) $(SERVER_SOURCES) -o $(SERVER_BIN)
 	@echo "✓ Server built: $(SERVER_BIN)"
 
 # Link the client binary from its object files
-$(CLIENT_BIN): $(CLIENT_SOURCES) common/protocol.h
+$(CLIENT_BIN): $(CLIENT_SOURCES) Common/protocol.h
 	$(CC) $(CFLAGS) $(CLIENT_SOURCES) -o $(CLIENT_BIN)
 	@echo "✓ Client built: $(CLIENT_BIN)"
 

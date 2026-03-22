@@ -31,7 +31,7 @@
 #include <netinet/in.h>    /* struct sockaddr_in, htons(), htonl() */
 #include <arpa/inet.h>     /* inet_pton(), inet_ntop()             */
 
-#include "../common/protocol.h"
+#include "../Common/protocol.h"
 #include "thread_pool.h"
 
 /* ── Server-side configuration ────────────────────────────── */
